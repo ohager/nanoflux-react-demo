@@ -4,6 +4,7 @@ import './css/App.css';
 import Nanoflux from 'nanoflux';
 
 import Notification from './components/Notification';
+import LoadingIndicator from './components/LoadingIndicator';
 import AppBody from './components/AppBody';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
 		return (
 			<div className="app">
 				<Notification />
+				<LoadingIndicator />
 				<div className="app-header">
 					<img src={logo} className="app-logo" alt="logo"/>
 					<div className="row">

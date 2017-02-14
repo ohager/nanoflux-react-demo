@@ -1,16 +1,16 @@
-import Nanoflux from 'nanoflux';
 import Immutable from 'seamless-immutable';
-
 
 // Best practice: Immutable state guarantees that really no one outside the store can change this state
 let appState = Immutable({
 	searchTerm : "",
-	messages : []
+	messages : [],
+	isLoading : false
 });
 
+let requestCounter =  0;
 
 // HINT: you cannot use arrow functions here, as the call context from Nanoflux needs to be bound
-const descriptor = {
+export default {
 	getState : function() {
 		return appState;
 	},
@@ -30,8 +30,17 @@ const descriptor = {
 	onSearch: function(searchTerm) {
 		appState = appState.set("searchTerm", searchTerm);
 		this.notify(appState);
+	},
+	onIncreaseRequestCount : function(){
+		appState = appState.set("isLoading", ++requestCounter > 0);
+		this.notify(appState);
+	},
+	onDecreaseRequestCount : function(){
+		--requestCounter;
+		if(requestCounter<0) requestCounter = 0;
+		appState = appState.set("isLoading", requestCounter > 0);
+		this.notify(appState);
 	}
 };
 
-export default Nanoflux.createStore('appStore', descriptor);
 
