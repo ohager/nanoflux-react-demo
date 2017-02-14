@@ -16,7 +16,7 @@ class AppBody extends React.Component {
 	render() {
 		return (
 			<div>
-				<p>New Component</p>
+				<p>Hey, I'm still under development</p>
 				<button onClick={this.onClick}>"Click me"</button>
 			</div>
 		);

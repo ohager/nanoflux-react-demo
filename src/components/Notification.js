@@ -8,7 +8,7 @@ class Notification extends React.Component {
 		super();
 		this.appStoreSubscription = undefined;
 		this.state = {
-			messages: ["Test"]
+			messages: []
 		}
 	}
 
