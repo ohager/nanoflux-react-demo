@@ -33,6 +33,7 @@ class Notification extends React.Component {
 							<div className="notification-message">
 								{message}
 							</div>
+							<div className="timeline" />
 						</div>)
 				})
 				}

@@ -34,6 +34,27 @@
     display: inline-block;
 }
 
+.notification .timeline{
+    display: block;
+    opacity: 0.6;
+    border-bottom: 2px solid white;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-name: decreasingTimeline;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes decreasingTimeline {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
+
 .notification-container .notification.success-notification {
     background-color: rgb(121, 210, 123);
 }
