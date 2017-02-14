@@ -2,6 +2,7 @@
   "name": "nanoflux-react-demo",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://ohager.github.io/nanoflux-react-demo/",
   "devDependencies": {
     "react-scripts": "0.8.5"
   },
