@@ -1,8 +1,10 @@
 import React from 'react';
 import Nanoflux from 'nanoflux';
+import ProductMatrix from './ProductMatrix';
 
 const ProductActions = Nanoflux.getActions("productActions");
 const AppActions = Nanoflux.getActions("appActions");
+
 
 class ProductsContainer extends React.Component {
 
@@ -11,6 +13,8 @@ class ProductsContainer extends React.Component {
 		this.state = {
 			products : []
 		};
+
+		this.onProductSelected = this.onProductSelected.bind(this);
 	}
 
 	onProductStoreUpdated(state){
@@ -26,18 +30,12 @@ class ProductsContainer extends React.Component {
 		this.subscription.unsubscribe();
 	}
 
+	onProductSelected(productId){
+		console.log("Selected produc", productId);
+	}
+
 	render() {
-		return (
-			<div>
-				{
-					this.state.products.map( (p,i) => (
-						<div key={i}>
-							<p>{p.name}</p>
-						</div>
-					))
-				}
-			</div>
-		);
+		return <ProductMatrix products={this.state.products} onSelected={this.onProductSelected} />
 	}
 }
 

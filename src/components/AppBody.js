@@ -11,17 +11,22 @@ class AppBody extends React.Component {
 		this.onClick = this.onClick.bind(this);
 	}
 
-	onClick(){
+	onClick() {
 		Nanoflux.getActions('appActions').pushMessage("Clicked");
 	}
 
 	render() {
 		return (
-			<div>
-				<p>Hey, I'm still under development</p>
-				<button onClick={this.onClick}>"Click me"</button>
-
-				<ProductsContainer></ProductsContainer>
+			<div className="u-full-width">
+				<h2>Hey, I'm still under development</h2>
+				<div className="row">
+					<div className="eight columns">
+						<ProductsContainer/>
+					</div>
+					<div className="four columns">
+						<button onClick={this.onClick}>"Click me"</button>
+					</div>
+				</div>
 			</div>
 		);
 	}

@@ -1,17 +1,24 @@
 import fetch from '../utils/fetchMock';
+import faker from 'faker';
 
-const mockedProducts = [
-	{
-		id: 1,
-		name : "Product 1",
-		description : "Awesome product you need to acquire!",
-		price : 2.5
+
+function mockProducts(number){
+	let products = [];
+
+	for(let i = 0; i < number; ++i){
+		products.push({
+			id: faker.random.uuid(),
+			name: faker.commerce.productName(),
+			description: faker.lorem.paragraph(),
+			price: faker.commerce.price()
+		})
 	}
-];
+	return products;
+}
 
 const service = {
 	loadProducts : function() {
-		return fetch( () => mockedProducts )
+		return fetch( () => mockProducts(25) )
 	}
 };
 

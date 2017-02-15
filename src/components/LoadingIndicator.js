@@ -30,7 +30,7 @@ class LoadingIndicator extends React.Component {
 		return (
 			<div className="loading-indicator-container">
 				<div className={className}>
-					<img src={loadingIcon}/>
+					<img src={loadingIcon} alt={this.state.isLoading ? "Loading" : ""}/>
 				</div>
 			</div>
 		);
