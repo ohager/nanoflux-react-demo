@@ -12,7 +12,21 @@ const ProductShape = {
 
 const Product = (props) => (
 	<div className="product" onClick={props.onClick.bind(null, props.product.id)}>
-		<p>{props.product.name}</p>
+		<div className="row">
+			<div className="twelve columns">
+				<img src={props.product.image} alt={props.product.name} />
+			</div>
+		</div>
+		<div className="row">
+			<div className="twelve columns">
+				<h4>{props.product.name}</h4>
+			</div>
+		</div>
+		<div className="row">
+			<div className="twelve columns">
+				<p>{props.product.description}</p>
+			</div>
+		</div>
 	</div>
 );
 
@@ -25,7 +39,7 @@ Product.propTypes = {
 const MatrixRow = (props) => {
 
 	const columnMap = ["one column", "two columns", "three columns", "four columns", "five columns", "six columns"];
-	const className = columnMap[ (12/(ProductMatrix.COLUMN_COUNT))-1];
+	const className = columnMap[ (12/(ProductMatrix.COLUMN_COUNT))-1]  || columnMap[2];
 
 	return (
 		<div className="row">
@@ -47,7 +61,7 @@ MatrixRow.propTypes = {
 
 class ProductMatrix extends React.Component {
 
-	static COLUMN_COUNT = 2;
+	static COLUMN_COUNT = 3;
 
 	render() {
 		const rows = chunk(this.props.products, ProductMatrix.COLUMN_COUNT);

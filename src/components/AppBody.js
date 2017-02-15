@@ -20,10 +20,10 @@ class AppBody extends React.Component {
 			<div className="u-full-width">
 				<h2>Hey, I'm still under development</h2>
 				<div className="row">
-					<div className="eight columns">
+					<div className="nine columns">
 						<ProductsContainer/>
 					</div>
-					<div className="four columns">
+					<div className="three columns">
 						<button onClick={this.onClick}>"Click me"</button>
 					</div>
 				</div>
