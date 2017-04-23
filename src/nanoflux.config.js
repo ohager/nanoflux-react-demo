@@ -5,7 +5,6 @@ import AppActions from './actions/appActions';
 import ProductActions from './actions/productActions';
 
 // centralized Nanoflux setup
-
 const defaultDispatcher = Nanoflux.getDispatcher();
 
 defaultDispatcher.connectTo([

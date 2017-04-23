@@ -3,12 +3,12 @@ import faker from 'faker';
 
 
 function mockProducts(number){
+
+	console.log("mockProducts");
+
 	const imageCategories = ["abstract", "animals", "business", "cats", "city", "food", "nightlife", "fashion", "people", "nature", "sports", "technics", "transport"];
 
-
-
 	let products = [];
-
 
 	for(let i = 0; i < number; ++i){
 

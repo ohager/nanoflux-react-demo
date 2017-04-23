@@ -13,25 +13,25 @@ class ProductsContainer extends React.Component {
 		this.state = {
 			products : []
 		};
-
 		this.onProductSelected = this.onProductSelected.bind(this);
 	}
 
 	onProductStoreUpdated(state){
-		this.setState({products: state.products});
+		this.setState({products: state.filteredProducts});
 	};
 
 	componentWillMount() {
-		this.subscription = Nanoflux.getStore("productStore").subscribe(this, this.onProductStoreUpdated);
+		this.productStoreSubscription = Nanoflux.getStore("productStore").subscribe(this, this.onProductStoreUpdated);
 		ProductActions.loadProducts();
 	}
 
 	componentWillUnmount(){
-		this.subscription.unsubscribe();
+		this.productStoreSubscription.unsubscribe();
 	}
 
 	onProductSelected(productId){
-		console.log("Selected produc", productId);
+		const product = this.state.products.find( p => p.id === productId );
+		AppActions.pushMessage(`Clicked ${product.name}`);
 	}
 
 	render() {

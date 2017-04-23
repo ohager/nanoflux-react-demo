@@ -15,7 +15,7 @@ class App extends Component {
 	}
 
 	onSearch(event) {
-		Nanoflux.getActions('appActions').search({searchTerm: event.target.value});
+		Nanoflux.getActions('appActions').search(event.target.value);
 	}
 
 	render() {

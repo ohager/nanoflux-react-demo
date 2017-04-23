@@ -9,6 +9,7 @@
   "dependencies": {
     "faker": "^3.1.0",
     "lodash.chunk": "^4.2.0",
+    "lodash.debounce": "^4.0.8",
     "nanoflux": "latest",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

@@ -7,6 +7,7 @@ let appState = Immutable({
 	isLoading : false
 });
 
+
 let requestCounter =  0;
 
 // HINT: you cannot use arrow functions here, as the call context from Nanoflux needs to be bound
@@ -17,7 +18,7 @@ export default {
 	onPushMessage : function(message){
 		// although, this is tedious, it protects you from undesired side-effects
 		let mutableMessages = appState.messages.asMutable();
-		mutableMessages.unshift(message);
+		mutableMessages.push(message);
 		appState = Immutable.set(appState,"messages", mutableMessages);
 		this.notify(appState);
 	},
