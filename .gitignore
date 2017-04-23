@@ -6,10 +6,8 @@ node_modules
 # testing
 coverage
 
-# production
-build
-
 # misc
+build
 .idea
 .DS_Store
 .env
