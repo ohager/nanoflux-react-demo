@@ -2,6 +2,7 @@ import React from 'react';
 import Nanoflux from 'nanoflux'
 
 import ProductsContainer from './ProductsContainer';
+import Cart from "./Cart";
 
 
 class AppBody extends React.Component {
@@ -18,13 +19,12 @@ class AppBody extends React.Component {
 	render() {
 		return (
 			<div className="u-full-width">
-				<h2>Hey, I'm still under development</h2>
 				<div className="row">
 					<div className="nine columns">
 						<ProductsContainer/>
 					</div>
 					<div className="three columns">
-						<button onClick={this.onClick}>"Click me"</button>
+						<Cart/>
 					</div>
 				</div>
 			</div>

@@ -8,6 +8,10 @@ const actionDescriptor = {
 			Nanoflux.getActions('appActions').pushMessage("Products loaded successfully");
 			this.dispatch('updateProducts', products);
 		});
+	},
+
+	addProductToCart : function(product){
+		this.dispatch('addProductToCart', product);
 	}
 };
 

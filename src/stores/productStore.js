@@ -5,7 +5,8 @@ import Nanoflux from 'nanoflux';
 let state = Immutable({
 	searchTerm : "",
 	filteredProducts : [],
-	products: []
+	products: [],
+	cart: []
 });
 
 
@@ -38,10 +39,20 @@ export default {
 	getState : function() {
 		return state;
 	},
+
+	onAddProductToCart : function(product){
+		const cart = state.cart.asMutable();
+		cart.push(product);
+
+		state = state.set("cart", cart);
+		this.notify(state);
+	},
+
 	onUpdateProducts : function(products){
 		state = state.set("products", products);
 		state = state.set("filteredProducts", filterProducts(state.products, state.searchTerm));
 		this.notify(state);
 	}
 };
+
 

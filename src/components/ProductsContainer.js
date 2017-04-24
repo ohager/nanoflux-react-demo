@@ -31,7 +31,8 @@ class ProductsContainer extends React.Component {
 
 	onProductSelected(productId){
 		const product = this.state.products.find( p => p.id === productId );
-		AppActions.pushMessage(`Clicked ${product.name}`);
+		ProductActions.addProductToCart(product);
+		AppActions.pushMessage(`${product.name} added to Cart`);
 	}
 
 	render() {

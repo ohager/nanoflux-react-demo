@@ -11,7 +11,7 @@ const ProductShape = {
 	id: React.PropTypes.string.isRequired,
 	name: React.PropTypes.string.isRequired,
 	description: React.PropTypes.string.isRequired,
-	price: React.PropTypes.string.isRequired
+	price: React.PropTypes.number.isRequired
 };
 
 const priceStyle = {
@@ -19,7 +19,6 @@ const priceStyle = {
 	borderBottom: "1px solid #eee",
 	padding: "0.5rem"
 };
-
 
 const Product = (props) => (
 	<div className="product" onClick={props.onClick.bind(null, props.product.id)}>
@@ -30,7 +29,7 @@ const Product = (props) => (
 		</div>
 		<div className="row">
 			<div className="twelve columns">
-				<h4>{props.product.name}</h4>
+				<h5>{props.product.name}</h5>
 			</div>
 		</div>
 		<div className="row">

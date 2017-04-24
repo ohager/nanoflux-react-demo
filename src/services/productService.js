@@ -18,7 +18,7 @@ function mockProducts(number){
 			id: faker.random.uuid(),
 			name: faker.commerce.productName(),
 			description: faker.lorem.paragraph(),
-			price: faker.commerce.price(),
+			price: +faker.commerce.price(),
 			image: faker.image.imageUrl(200,200, category)
 		})
 	}

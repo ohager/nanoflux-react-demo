@@ -1,3 +1,7 @@
+html{
+  background-color: rgba(62, 123, 130, 0.3);
+}
+
 .app {
   text-align: center;
 }
@@ -14,9 +18,15 @@
 .app-header {
   background-color: black;
   background: no-repeat url('../img/nano-bg.jpg') -50px -100px black;
+  height: 60px;
   padding: 20px;
   display: inline-block;
   width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 5px 8px 0 rgba(102, 102, 102, 0.75);
 }
 
 .app-header h2{
@@ -30,10 +40,13 @@
   width: 90%;
   max-width: 400px;
   margin-top: 10px;
+  font-size: x-large;
 }
 
 .app-body {
   font-size: large;
+  margin-top: 100px;
+  padding: 20px;
 }
 
 @keyframes App-logo-spin {
