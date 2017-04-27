@@ -5,15 +5,17 @@ import cart from '../img/cart.png';
 
 const localeNumberFormatter = new Intl.NumberFormat();
 
-const CartItem = ({name, price}) => (
+const CartItem = ({quantity, product}) => (
 
 	<div className="row item">
-		<div className="six columns" >
-			{name}
+		<div className="six columns" style={ {textAlign: "left" }} >
+			{product.name}
 		</div>
-
-		<div className="six columns" >
-			{"$ " + localeNumberFormatter.format(price)}
+		<div className="three columns" style = {{textAlign: "left" }}>
+			{"$ " + localeNumberFormatter.format(product.price)}
+		</div>
+		<div className="three columns" >
+			{quantity + "x"}
 		</div>
 	</div>
 	);
@@ -40,7 +42,7 @@ class Cart extends React.Component {
 	}
 
 	calcTotal(){
-		const total = this.state.items.reduce( (price, item) => price +item.price, 0);
+		const total = this.state.items.reduce( (price, {quantity, product}) => price + (quantity * product.price), 0);
 		return "$ " + localeNumberFormatter.format(total);
 	}
 

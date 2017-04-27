@@ -42,7 +42,19 @@ export default {
 
 	onAddProductToCart : function(product){
 		const cart = state.cart.asMutable();
-		cart.push(product);
+		const productIndex = cart.findIndex( p => p.product.id === product.id );
+
+		if(productIndex >= 0){
+			const foundProduct = cart[productIndex];
+			cart[productIndex] = foundProduct.set('quantity', foundProduct.quantity + 1);
+		}
+		else{
+			cart.push({
+				quantity: 1,
+				product : product
+			});
+		}
+
 
 		state = state.set("cart", cart);
 		this.notify(state);

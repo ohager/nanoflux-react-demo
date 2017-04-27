@@ -12,7 +12,24 @@ class App extends Component {
 	constructor() {
 		super();
 		this.onSearch = this.onSearch.bind(this);
+
+		this.state = {
+			isLoading: false
+		}
 	}
+
+	onStoreUpdate(state) {
+		this.setState({isLoading: state.isLoading});
+	}
+
+	componentWillMount() {
+		this.appStoreSubscription = Nanoflux.getStore('appStore').subscribe(this, this.onStoreUpdate);
+	}
+
+	componentWillUnmount() {
+		this.appStoreSubscription.unsubscribe();
+	}
+
 
 	onSearch(event) {
 		Nanoflux.getActions('appActions').search(event.target.value);
@@ -22,7 +39,7 @@ class App extends Component {
 		return (
 			<div className="app">
 				<Notification />
-				<LoadingIndicator />
+				<LoadingIndicator isLoading={this.state.isLoading} />
 				<div className="app-header">
 					<img src={logo} className="app-logo" alt="logo"/>
 					<div className="row">
