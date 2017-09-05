@@ -4,11 +4,13 @@ import Immutable from 'seamless-immutable';
 let appState = Immutable({
 	searchTerm : "",
 	messages : [],
-	isLoading : false
+	requestCounter : 0,
 });
 
-
-let requestCounter =  0;
+// Best practice: Use so called selectors to provide access to your state
+export const getSearchTerm = () => appState.searchTerm;
+export const getMessages = () => appState.messages;
+export const isLoading = () => appState.requestCounter > 0;
 
 // HINT: you cannot use arrow functions here, as the call context from Nanoflux needs to be bound
 export default {
@@ -20,27 +22,27 @@ export default {
 		let mutableMessages = appState.messages.asMutable();
 		mutableMessages.push(message);
 		appState = Immutable.set(appState,"messages", mutableMessages);
-		this.notify(appState);
+		this.notify();
 	},
 	onPopMessage : function(){
 		let mutableMessages = appState.messages.asMutable();
 		mutableMessages.shift();
 		appState = appState.set("messages", mutableMessages);
-		this.notify(appState);
+		this.notify();
 	},
 	onSearch: function(searchTerm) {
 		appState = appState.set("searchTerm", searchTerm);
-		this.notify(appState);
+		this.notify();
 	},
 	onIncreaseRequestCount : function(){
-		appState = appState.set("isLoading", ++requestCounter > 0);
-		this.notify(appState);
+		appState = appState.set("requestCounter", appState.requestCounter + 1);
+		this.notify();
 	},
 	onDecreaseRequestCount : function(){
-		--requestCounter;
-		if(requestCounter<0) requestCounter = 0;
-		appState = appState.set("isLoading", requestCounter > 0);
-		this.notify(appState);
+		let requestCounter = appState.requestCounter;
+		if(--requestCounter<0) requestCounter = 0;
+		appState = appState.set("requestCounter", requestCounter);
+		this.notify();
 	}
 };
 

@@ -1,45 +1,42 @@
 import React from 'react';
-import Nanoflux from 'nanoflux';
 import ProductMatrix from './ProductMatrix';
-
-const ProductActions = Nanoflux.getActions("productActions");
-const AppActions = Nanoflux.getActions("appActions");
-
+import {connect, withActions} from "nanoflux-react";
+import {getFilteredProducts} from "../stores/productStore";
 
 class ProductsContainer extends React.Component {
-
-	constructor() {
-		super();
-		this.state = {
-			products : []
-		};
-		this.onProductSelected = this.onProductSelected.bind(this);
+	
+	componentWillMount(){
+		this.props.actions.loadProducts();
 	}
-
-	onProductStoreUpdated(state){
-		this.setState({products: state.filteredProducts});
-	};
-
-	componentWillMount() {
-		this.productStoreSubscription = Nanoflux.getStore("productStore").subscribe(this, this.onProductStoreUpdated);
-		ProductActions.loadProducts();
+	
+	onProductSelected(productId) {
+		const product = this.props.filteredProducts.find(p => p.id === productId);
+		this.props.actions.addProductToCart(product);
+		this.props.actions.pushMessage(`${product.name} added to Cart`);
 	}
-
-	componentWillUnmount(){
-		this.productStoreSubscription.unsubscribe();
-	}
-
-	onProductSelected(productId){
-		const product = this.state.products.find( p => p.id === productId );
-		ProductActions.addProductToCart(product);
-		AppActions.pushMessage(`${product.name} added to Cart`);
-	}
-
+	
 	render() {
-		return <ProductMatrix products={this.state.products} onSelected={this.onProductSelected} />
+		return <ProductMatrix products={this.props.filteredProducts} onSelected={this.onProductSelected}/>
 	}
 }
 
-ProductsContainer.propTypes = {};
+const mapStateToProps = {
+	filteredProducts: getFilteredProducts,
+};
 
-export default ProductsContainer;
+const mapProductActionsToProps = (actions) => ({
+	loadProducts: actions.loadProducts,
+	addProductToCart: actions.addProductToCart,
+});
+
+const mapAppActionsToProps = (actions) => ({
+	pushMessage: actions.pushMessage
+});
+
+
+export default
+// it's better to map Actions first, as this reduces re-rendering further HOCs
+withActions('appActions', mapAppActionsToProps)(
+	withActions('productActions', mapProductActionsToProps)(
+		connect('productStore', mapStateToProps)(ProductsContainer))
+);

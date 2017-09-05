@@ -1,5 +1,4 @@
 import Immutable from 'seamless-immutable';
-import Nanoflux from 'nanoflux';
 
 // Best practice: Immutable state guarantees that really no one outside the store can change this state
 let state = Immutable({
@@ -9,6 +8,7 @@ let state = Immutable({
 	cart: []
 });
 
+export const getFilteredProducts = () => state.filteredProducts
 
 function filterProducts(products,searchTerm){
 	if(searchTerm === ""){
@@ -32,8 +32,8 @@ export default {
 
 	onInitialize : function(){
 		// Chaining stores...we could do the filtering also inside the ProductContainer.
-		const appstore = Nanoflux.getStore("appStore");
-		appstore.subscribe(this, this.onAppStoreUpdate);
+//		const appstore = Nanoflux.getStore("appStore");
+//		appstore.subscribe(this, this.onAppStoreUpdate);
 	},
 
 	getState : function() {
