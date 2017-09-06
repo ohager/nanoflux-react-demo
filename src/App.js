@@ -7,7 +7,7 @@ import LoadingIndicator from './components/LoadingIndicator';
 import {connect, withActions} from 'nanoflux-react/lib';
 import {getMessages, isLoading} from './stores/appStore';
 import ProductsContainer from "./components/ProductsContainer";
-import Cart from "./components/Cart";
+import CartContainer from "./components/CartContainer";
 
 const App = ({isLoading, messages, actions}) => (
 	
@@ -30,10 +30,10 @@ const App = ({isLoading, messages, actions}) => (
 			<div className="u-full-width">
 				<div className="row">
 					<div className="nine columns">
-						{<ProductsContainer/>}
+						<ProductsContainer/>
 					</div>
 					<div className="three columns">
-						{/*<Cart/>*/}
+						<CartContainer/>
 					</div>
 				</div>
 			</div>

@@ -1,25 +1,9 @@
 import React from 'react';
-import ProductMatrix from './ProductMatrix';
+import Products from './Products';
 import {connect, withActions} from "nanoflux-react";
 import {getFilteredProducts} from "../stores/productStore";
 
-class ProductsContainer extends React.Component {
-	
-	componentWillMount(){
-		this.props.actions.loadProducts();
-	}
-	
-	onProductSelected(productId) {
-		const product = this.props.filteredProducts.find(p => p.id === productId);
-		this.props.actions.addProductToCart(product);
-		this.props.actions.pushMessage(`${product.name} added to Cart`);
-	}
-	
-	render() {
-		return <ProductMatrix products={this.props.filteredProducts} onSelected={this.onProductSelected}/>
-	}
-}
-
+// Best practice: A typical lean container that just 'enhances' your targeted component
 const mapStateToProps = {
 	filteredProducts: getFilteredProducts,
 };
@@ -33,10 +17,11 @@ const mapAppActionsToProps = (actions) => ({
 	pushMessage: actions.pushMessage
 });
 
-
-export default
+// ---------- Functional Programming is fun! -----------
+// This is how you can connect multiple ActionCreators and Stores...just compose them
 // it's better to map Actions first, as this reduces re-rendering further HOCs
+export default
 withActions('appActions', mapAppActionsToProps)(
 	withActions('productActions', mapProductActionsToProps)(
-		connect('productStore', mapStateToProps)(ProductsContainer))
+		connect('productStore', mapStateToProps)(Products))
 );

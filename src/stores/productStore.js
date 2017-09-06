@@ -8,7 +8,8 @@ let state = Immutable({
 	cart: []
 });
 
-export const getFilteredProducts = () => state.filteredProducts
+export const getFilteredProducts = () => state.filteredProducts;
+export const getCartItems = () => state.cart;
 
 function filterProducts(products,searchTerm){
 	if(searchTerm === ""){
