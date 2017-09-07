@@ -1,4 +1,3 @@
-import React from 'react';
 import Products from './Products';
 import {connect, withActions} from "nanoflux-react";
 import {getFilteredProducts} from "../stores/productStore";

@@ -19,7 +19,6 @@ class Products extends React.Component {
 		if(this.props.searchTerm !== nextProps.searchTerm){
 			this.props.actions.filterProducts(nextProps.searchTerm);
 		}
-		console.log('componentWillReceiveProps', nextProps);
 		this.props = nextProps;
 	}
 	
