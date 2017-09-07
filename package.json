@@ -2,14 +2,20 @@
   "name": "nanoflux-react-demo",
   "version": "0.0.1",
   "private": true,
-  "homepage": "http://ohager.github.io/nanoflux-react-demo",
+  "homepage": "https://ohager.github.io/nanoflux-react-demo/",
   "devDependencies": {
-    "gh-pages": "^0.12.0",
-    "react-scripts": "0.8.5"
+    "gh-pages": "^1.0.0",
+    "react-scripts": "^1.0.12"
   },
   "dependencies": {
+    "faker": "^3.1.0",
+    "lodash.chunk": "^4.2.0",
+    "lodash.debounce": "^4.0.8",
     "nanoflux": "latest",
-    "react": "^15.4.2",
+    "nanoflux-react": "^0.0.1",
+    "prop-types": "^15.5.10",
+    "randomcolor": "^0.5.0",
+    "react": "^15.6.1",
     "react-dom": "^15.4.2",
     "seamless-immutable": "^7.0.1"
   },
@@ -17,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build&&gh-pages -d build"
   }
 }
