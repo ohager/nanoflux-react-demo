@@ -10,6 +10,10 @@ const actionDescriptor = {
 		});
 	},
 
+	filterProducts : function(searchTerm){
+		this.dispatch('filterProducts', searchTerm);
+	},
+	
 	addProductToCart : function(product){
 		this.dispatch('addProductToCart', product);
 	}

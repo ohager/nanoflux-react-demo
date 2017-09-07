@@ -2,14 +2,21 @@ import React from 'react';
 import Products from './Products';
 import {connect, withActions} from "nanoflux-react";
 import {getFilteredProducts} from "../stores/productStore";
+import {getSearchTerm} from "../stores/appStore";
 
 // Best practice: A typical lean container that just 'enhances' your targeted component
-const mapStateToProps = {
+const mapProductStateToProps = {
 	filteredProducts: getFilteredProducts,
+	searchTerm: getSearchTerm,
+};
+
+const mapAppStateToProps = {
+	searchTerm: getSearchTerm,
 };
 
 const mapProductActionsToProps = (actions) => ({
 	loadProducts: actions.loadProducts,
+	filterProducts: actions.filterProducts,
 	addProductToCart: actions.addProductToCart,
 });
 
@@ -23,5 +30,7 @@ const mapAppActionsToProps = (actions) => ({
 export default
 withActions('appActions', mapAppActionsToProps)(
 	withActions('productActions', mapProductActionsToProps)(
-		connect('productStore', mapStateToProps)(Products))
+		connect('productStore', mapProductStateToProps)(
+			connect('appStore', mapAppStateToProps)(Products)
+		))
 );

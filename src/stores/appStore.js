@@ -14,11 +14,8 @@ export const isLoading = () => appState.requestCounter > 0;
 
 // HINT: you cannot use arrow functions here, as the call context from Nanoflux needs to be bound
 export default {
-	getState : function() {
-		return appState;
-	},
 	onPushMessage : function(message){
-		// although, this is tedious, it protects you from undesired side-effects
+		// although, this is a bit more verbose, it protects you from undesired side-effects
 		let mutableMessages = appState.messages.asMutable();
 		mutableMessages.push(message);
 		appState = Immutable.set(appState,"messages", mutableMessages);

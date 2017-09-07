@@ -22,27 +22,8 @@ const CartItem = ({quantity, product}) => (
 
 class Cart extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			items: []
-		}
-	}
-
-	onProductStoreUpdated(state){
-		this.setState({items:state.cart});
-	};
-
-	componentWillMount(){
-		this.subscription = Nanoflux.getStore('productStore').subscribe(this, this.onProductStoreUpdated);
-	}
-
-	componentWillUnmount(){
-		this.subscription.unsubscribe();
-	}
-
 	calcTotal(){
-		const total = this.state.items.reduce( (price, {quantity, product}) => price + (quantity * product.price), 0);
+		const total = this.props.items.reduce( (price, {quantity, product}) => price + (quantity * product.price), 0);
 		return "$ " + localeNumberFormatter.format(total);
 	}
 
@@ -64,8 +45,8 @@ class Cart extends React.Component {
 				<div className="row">
 					<div className="twelve columns">
 						{
-							this.state.items.length > 0 ?
-							this.state.items.map( (i,k) => <CartItem key={k} {...i}/> ) :
+							this.props.items.length > 0 ?
+							this.props.items.map( (i,k) => <CartItem key={k} {...i}/> ) :
 								<h4>Nothing here yet</h4>
 						}
 					</div>

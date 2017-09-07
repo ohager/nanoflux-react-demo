@@ -15,6 +15,14 @@ class Products extends React.Component {
 		this.props.actions.pushMessage(`${product.name} added to Cart`);
 	};
 	
+	componentWillReceiveProps(nextProps){
+		if(this.props.searchTerm !== nextProps.searchTerm){
+			this.props.actions.filterProducts(nextProps.searchTerm);
+		}
+		console.log('componentWillReceiveProps', nextProps);
+		this.props = nextProps;
+	}
+	
 	render() {
 		return <ProductMatrix products={this.props.filteredProducts} onSelected={this.onProductSelected}/>
 	}
